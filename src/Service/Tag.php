@@ -1,30 +1,19 @@
 <?php
 
-namespace MadeITBelgium\WordPress\Object;
+namespace Mlabfactory\WordPress\Service;
 
-/**
- * WordPress PHP SDK.
- *
- * @version    1.0.0
- *
- * @copyright  Copyright (c) 2018 Made I.T. (https://www.madeit.be)
- * @author     Tjebbe Lievens <tjebbe.lievens@madeit.be>
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-3.txt    LGPL
- */
-class CustomPost
+class Tag
 {
     protected $wordpress;
-    protected $postType;
 
     /**
      * Construct WordPress.
      *
      * @param $wordpressSdk
      */
-    public function __construct($wordPressSdk, $postType = 'posts')
+    public function __construct($wordPressSdk)
     {
         $this->wordpress = $wordPressSdk;
-        $this->postType = $postType;
     }
 
     public function setWordPressInstance($wordPressSdk)
@@ -42,9 +31,9 @@ class CustomPost
      *
      * @return mixed
      */
-    public function list($data = [])
+    public function list($data = null)
     {
-        $result = $this->wordpress->getCall('/wp/v2/'.$this->postType, $data);
+        $result = $this->wordpress->getCall('/wp/v2/tags', $data);
 
         return $result;
     }
@@ -56,7 +45,7 @@ class CustomPost
      */
     public function create($data)
     {
-        $result = $this->wordpress->postCall('/wp/v2/'.$this->postType, $data);
+        $result = $this->wordpress->postCall('/wp/v2/tags', $data);
 
         return $result;
     }
@@ -68,7 +57,7 @@ class CustomPost
      */
     public function get($id)
     {
-        $result = $this->wordpress->getCall('/wp/v2/'.$this->postType.'/'.$id);
+        $result = $this->wordpress->getCall('/wp/v2/tags/'.$id);
 
         return $result;
     }
@@ -80,7 +69,7 @@ class CustomPost
      */
     public function update($id, $data)
     {
-        $result = $this->wordpress->postCall('/wp/v2/'.$this->postType.'/'.$id, $data);
+        $result = $this->wordpress->postCall('/wp/v2/tags/'.$id, $data);
 
         return $result;
     }
@@ -92,7 +81,7 @@ class CustomPost
      */
     public function delete($id)
     {
-        $result = $this->wordpress->deleteCall('/wp/v2/'.$this->postType.'/'.$id);
+        $result = $this->wordpress->deleteCall('/wp/v2/tags/'.$id);
 
         return $result;
     }

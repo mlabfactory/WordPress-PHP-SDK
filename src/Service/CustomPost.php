@@ -1,28 +1,21 @@
 <?php
 
-namespace MadeITBelgium\WordPress\Object;
+namespace Mlabfactory\WordPress\Service;
 
-/**
- * WordPress PHP SDK.
- *
- * @version    1.0.0
- *
- * @copyright  Copyright (c) 2018 Made I.T. (https://www.madeit.be)
- * @author     Tjebbe Lievens <tjebbe.lievens@madeit.be>
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-3.txt    LGPL
- */
-class Post
+class CustomPost
 {
     protected $wordpress;
+    protected $postType;
 
     /**
      * Construct WordPress.
      *
      * @param $wordpressSdk
      */
-    public function __construct($wordPressSdk)
+    public function __construct($wordPressSdk, $postType = 'posts')
     {
         $this->wordpress = $wordPressSdk;
+        $this->postType = $postType;
     }
 
     public function setWordPressInstance($wordPressSdk)
@@ -40,9 +33,9 @@ class Post
      *
      * @return mixed
      */
-    public function list($data = null)
+    public function list($data = [])
     {
-        $result = $this->wordpress->getCall('/wp/v2/posts', $data);
+        $result = $this->wordpress->getCall('/wp/v2/'.$this->postType, $data);
 
         return $result;
     }
@@ -54,7 +47,7 @@ class Post
      */
     public function create($data)
     {
-        $result = $this->wordpress->postCall('/wp/v2/posts', $data);
+        $result = $this->wordpress->postCall('/wp/v2/'.$this->postType, $data);
 
         return $result;
     }
@@ -66,7 +59,7 @@ class Post
      */
     public function get($id)
     {
-        $result = $this->wordpress->getCall('/wp/v2/posts/'.$id);
+        $result = $this->wordpress->getCall('/wp/v2/'.$this->postType.'/'.$id);
 
         return $result;
     }
@@ -78,7 +71,7 @@ class Post
      */
     public function update($id, $data)
     {
-        $result = $this->wordpress->postCall('/wp/v2/posts/'.$id, $data);
+        $result = $this->wordpress->postCall('/wp/v2/'.$this->postType.'/'.$id, $data);
 
         return $result;
     }
@@ -90,7 +83,7 @@ class Post
      */
     public function delete($id)
     {
-        $result = $this->wordpress->deleteCall('/wp/v2/posts/'.$id);
+        $result = $this->wordpress->deleteCall('/wp/v2/'.$this->postType.'/'.$id);
 
         return $result;
     }

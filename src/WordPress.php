@@ -1,27 +1,18 @@
 <?php
 
-namespace MadeITBelgium\WordPress;
+namespace Mlabfactory\WordPress;
 
 use GuzzleHttp\Client;
+use Mlabfactory\WordPress\Service\Tag;
+use Mlabfactory\WordPress\Service\User;
+use Mlabfactory\WordPress\Service\CustomPost;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use MadeITBelgium\WordPress\Exception\ServerErrorException;
-use MadeITBelgium\WordPress\Exception\UnauthorizedException;
-use MadeITBelgium\WordPress\Exception\ObjectNotFoundException;
-use MadeITBelgium\WordPress\Exception\ValidationException;
-use MadeITBelgium\WordPress\Object\User;
-use MadeITBelgium\WordPress\Object\CustomPost;
-use MadeITBelgium\WordPress\Object\Tag;
+use Mlabfactory\WordPress\Exception\ValidationException;
+use Mlabfactory\WordPress\Exception\ServerErrorException;
+use Mlabfactory\WordPress\Exception\UnauthorizedException;
+use Mlabfactory\WordPress\Exception\ObjectNotFoundException;
 
-/**
- * WordPress PHP SDK.
- *
- * @version    1.0.0
- *
- * @copyright  Copyright (c) 2019 WordPress (https://www.madeit.be)
- * @author     Tjebbe Lievens <tjebbe.lievens@madeit.be>
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-3.txt    LGPL
- */
 class WordPress
 {
     protected $version = '1.4.0';
@@ -122,9 +113,6 @@ class WordPress
         $this->password = $password;
         return $this;
     }
-
-
-
 
     /**
      * Execute API call.
