@@ -2,30 +2,8 @@
 
 namespace Mlabfactory\WordPress\Service;
 
-class Tag
-{
-    protected $wordpress;
-
-    /**
-     * Construct WordPress.
-     *
-     * @param $wordpressSdk
-     */
-    public function __construct($wordPressSdk)
-    {
-        $this->wordpress = $wordPressSdk;
-    }
-
-    public function setWordPressInstance($wordPressSdk)
-    {
-        $this->wordpress = $wordPressSdk;
-    }
-
-    public function getWordPressInstance()
-    {
-        return $this->wordpress;
-    }
-
+class Tag extends WpService
+{ 
     /**
      * Get all posts.
      *

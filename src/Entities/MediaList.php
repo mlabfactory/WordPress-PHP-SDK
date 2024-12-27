@@ -5,32 +5,32 @@ namespace Mlabfactory\WordPress\Entities;
 
 use Mlabfactory\WordPress\Traits\Serializer;
 
-class PostsList {
+class MediaList {
 
     use Serializer;
 
-    private array $posts = [];
+    private array $media = [];
 
     /**
-     * Get the value of posts
+     * Get the value of media
      *
      * @return array
      */
-    public function getPosts(): array
+    public function getMedia(): array
     {
-        return $this->posts;
+        return $this->media;
     }
 
     /**
-     * Set the value of posts
+     * Set the value of media
      *
-     * @param array $posts
+     * @param array $media
      *
      * @return self
      */
-    public function addPost(Post $posts): self
+    public function addMedia(Media $media): self
     {
-        $this->posts[] = $posts;
+        $this->media[] = $media;
 
         return $this;
     }

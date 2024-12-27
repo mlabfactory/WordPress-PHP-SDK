@@ -12,6 +12,8 @@ use Mlabfactory\WordPress\Exception\ValidationException;
 use Mlabfactory\WordPress\Exception\ServerErrorException;
 use Mlabfactory\WordPress\Exception\UnauthorizedException;
 use Mlabfactory\WordPress\Exception\ObjectNotFoundException;
+use Mlabfactory\WordPress\Service\Media;
+use Mlabfactory\WordPress\Service\Post;
 
 class WordPress
 {
@@ -236,9 +238,14 @@ class WordPress
         return $user;
     }
 
-    public function post()
+    /**
+     * Creates a new post.
+     *
+     * @return Post The newly created post object.
+     */
+    public function post(): Post
     {
-        $post = new CustomPost($this, 'posts');
+        $post = new Post($this);
 
         return $post;
     }
@@ -265,5 +272,11 @@ class WordPress
     public function rawOutput($rawOutput)
     {
         $this->rawOutput = $rawOutput;
+    }
+
+    public function media(): Media
+    {
+        $media = new Media($this);
+        return $media;
     }
 }

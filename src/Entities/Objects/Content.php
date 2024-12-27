@@ -3,20 +3,31 @@ declare(strict_types=1);
 
 namespace Mlabfactory\WordPress\Entities\Objects;
 
-class Content {
-    private array $title;
-    private array $content;
-    private array $excerpt;
+use Mlabfactory\WordPress\Traits\Serializer;
 
-    public function getTitle(): array {
+class Content {
+
+    use Serializer;
+    
+    private string $title;
+    private string $content;
+    private string $excerpt;
+
+    public function __construct(... $data) {
+        $this->title = $data[0]->rendered;
+        $this->content = $data[1]->rendered;
+        $this->excerpt = $data[2]->rendered;
+    }
+
+    public function getTitle(): string {
         return $this->title;
     }
 
-    public function getContent(): array {
+    public function getContent(): string {
         return $this->content;
     }
 
-    public function getExcerpt(): array {
+    public function getExcerpt(): string {
         return $this->excerpt;
     }
 }

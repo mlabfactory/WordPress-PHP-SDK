@@ -5,30 +5,8 @@ namespace Mlabfactory\WordPress\Service;
 use Mlabfactory\WordPress\Entities\PostsList;
 use Mlabfactory\WordPress\Entities\Post as PostEntity;
 
-class Post
+class Post extends WpService
 {
-    protected $wordpress;
-
-    /**
-     * Construct WordPress.
-     *
-     * @param $wordpressSdk
-     */
-    public function __construct($wordPressSdk)
-    {
-        $this->wordpress = $wordPressSdk;
-    }
-
-    public function setWordPressInstance($wordPressSdk)
-    {
-        $this->wordpress = $wordPressSdk;
-    }
-
-    public function getWordPressInstance()
-    {
-        return $this->wordpress;
-    }
-
     /**
      * Get all posts.
      *
@@ -41,7 +19,7 @@ class Post
 
         foreach ($result as $_ => $value) {
             $list->addPost(
-                new PostEntity($value)
+                new PostEntity((array) $value)
             );
         }
 
@@ -68,7 +46,7 @@ class Post
     public function get($id): PostEntity
     {
         $result = $this->wordpress->getCall('/wp/v2/posts/'.$id);
-        return new PostEntity($result);
+        return new PostEntity((array) $result);
     }
 
     /**

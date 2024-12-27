@@ -5,21 +5,20 @@ namespace Mlabfactory\WordPress\Entities;
 
 use Mlabfactory\WordPress\Entities\Objects\Date;
 use Mlabfactory\WordPress\Entities\Objects\Meta;
-use Mlabfactory\WordPress\Entities\Objects\Content;
+use Mlabfactory\WordPress\Entities\Objects\MediaDetail;
 
-class Post extends Response {
+class Media extends Response {
 
     private Date $date;
     private string $status;
     private string $type;
-    private Content $content;
+    private string $description;
     private int $author;
     private int $featured_media;
     private string $comment_status;
     private string $ping_status;
-    private bool $sticky;
     private string $template;
-    private string $format;
+    private MediaDetail $mediaDetail;
 
     public function __construct(array $data) {
         $this->id = $data['id'];
@@ -28,15 +27,14 @@ class Post extends Response {
         $this->status = $data['status'];
         $this->type = $data['type'];
         $this->link = $data['link'];
-        $this->content = new Content( $data['title'],$data['content'], $data['excerpt'] );
+        $this->description = $data['description']->rendered;
         $this->author = $data['author'];
         $this->featured_media = $data['featured_media'];
         $this->comment_status = $data['comment_status'];
         $this->ping_status = $data['ping_status'];
-        $this->sticky = $data['sticky'];
         $this->template = $data['template'];
-        $this->format = $data['format'];
         $this->meta = new Meta($data['meta'], $data['categories']);
+        $this->mediaDetail = new MediaDetail((array) $data['media_details']);
     }
 
 
@@ -52,8 +50,8 @@ class Post extends Response {
         return $this->type;
     }
 
-    public function getContent(): Content {
-        return $this->content;
+    public function getDescription(): string {
+        return $this->description;
     }
 
     public function getAuthor(): int {
@@ -72,16 +70,17 @@ class Post extends Response {
         return $this->ping_status;
     }
 
-    public function isSticky(): bool {
-        return $this->sticky;
-    }
-
     public function getTemplate(): string {
         return $this->template;
     }
 
-    public function getFormat(): string {
-        return $this->format;
+    /**
+     * Get the value of mediaDetail
+     *
+     * @return MediaDetail
+     */
+    public function getMediaDetail(): MediaDetail
+    {
+        return $this->mediaDetail;
     }
-
 }

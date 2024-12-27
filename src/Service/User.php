@@ -2,29 +2,8 @@
 
 namespace Mlabfactory\WordPress\Service;
 
-class User
+class User extends WpService
 {
-    protected $wordpress;
-
-    /**
-     * Construct WordPress.
-     *
-     * @param $wordpressSdk
-     */
-    public function __construct($wordPressSdk)
-    {
-        $this->wordpress = $wordPressSdk;
-    }
-
-    public function setWordPressInstance($wordPressSdk)
-    {
-        $this->wordpress = $wordPressSdk;
-    }
-
-    public function getWordPressInstance()
-    {
-        return $this->wordpress;
-    }
 
     /**
      * Get all users.

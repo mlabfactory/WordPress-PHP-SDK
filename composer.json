@@ -17,11 +17,6 @@
       "email": "io@marcodefelice.it"
     }
   ],
-  "require": {
-    "php": ">=8.0",
-    "guzzlehttp/guzzle": "^7.9",
-    "symfony/serializer": "^4.4"
-  },
   "autoload": {
     "classmap": [
       "src/"
@@ -31,6 +26,12 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.2"
+    "phpunit/phpunit": "^10.5"
+  },
+  "require": {
+    "php": ">=7.4",
+    "guzzlehttp/guzzle": "^7.9",
+    "symfony/serializer": "^7.2",
+    "symfony/property-access": "^7.2"
   }
 }

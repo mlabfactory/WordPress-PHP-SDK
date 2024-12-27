@@ -2,30 +2,14 @@
 
 namespace Mlabfactory\WordPress\Service;
 
-class CustomPost
+class CustomPost extends WpService
 {
-    protected $wordpress;
     protected $postType;
 
-    /**
-     * Construct WordPress.
-     *
-     * @param $wordpressSdk
-     */
-    public function __construct($wordPressSdk, $postType = 'posts')
+    public function __construct($wordPressSdk, $postType)
     {
         $this->wordpress = $wordPressSdk;
         $this->postType = $postType;
-    }
-
-    public function setWordPressInstance($wordPressSdk)
-    {
-        $this->wordpress = $wordPressSdk;
-    }
-
-    public function getWordPressInstance()
-    {
-        return $this->wordpress;
     }
 
     /**

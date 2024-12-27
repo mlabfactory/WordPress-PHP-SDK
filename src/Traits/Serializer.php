@@ -12,7 +12,6 @@ trait Serializer {
     /**
      * Serializes the given data into the specified format.
      *
-     * @param mixed $data The data to serialize.
      * @param string $format The format to serialize the data into. Default is 'json'.
      * @param array $context Options that affect the serialization process.
      * 
@@ -31,11 +30,10 @@ trait Serializer {
     /**
      * Converts the given data to an array.
      *
-     * @param mixed $data The data to be converted to an array.
      * @param array $context Optional context for the conversion process.
      * @return array The converted array.
      */
-    public function toArray($data, array $context = []): array
+    public function toArray(array $context = []): array
     {
         return json_decode($this->serialize('json', $context), true);
     }
