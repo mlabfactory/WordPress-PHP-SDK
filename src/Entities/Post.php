@@ -37,6 +37,9 @@ class Post extends Response {
         $this->template = $data['template'];
         $this->format = $data['format'];
         $this->meta = new Meta($data['meta'], $data['categories']);
+
+        $this->body = $data;
+
     }
 
 

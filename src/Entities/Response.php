@@ -14,6 +14,7 @@ class Response {
     protected string $slug;
     protected Meta $meta;
     protected string $link;
+    protected array $body;
 
     public function __construct(array $data)
     {
@@ -43,4 +44,14 @@ class Response {
         return $this->link;
     }
    
+
+    /**
+     * Get the value of body
+     *
+     * @return array
+     */
+    public function getBody(): array
+    {
+        return $this->body;
+    }
 }

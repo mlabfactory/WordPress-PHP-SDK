@@ -33,8 +33,10 @@ class Media extends Response {
         $this->comment_status = $data['comment_status'];
         $this->ping_status = $data['ping_status'];
         $this->template = $data['template'];
-        $this->meta = new Meta($data['meta'], $data['categories']);
+        $this->meta = new Meta($data['meta'], $data['categories'] ?? null);
         $this->mediaDetail = new MediaDetail((array) $data['media_details']);
+
+        $this->body = $data;
     }
 
 

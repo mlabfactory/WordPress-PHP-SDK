@@ -12,6 +12,7 @@ use Mlabfactory\WordPress\Exception\ValidationException;
 use Mlabfactory\WordPress\Exception\ServerErrorException;
 use Mlabfactory\WordPress\Exception\UnauthorizedException;
 use Mlabfactory\WordPress\Exception\ObjectNotFoundException;
+use Mlabfactory\WordPress\Service\Category;
 use Mlabfactory\WordPress\Service\Media;
 use Mlabfactory\WordPress\Service\Post;
 
@@ -277,6 +278,12 @@ class WordPress
     public function media(): Media
     {
         $media = new Media($this);
+        return $media;
+    }
+
+    public function category(): Category
+    {
+        $media = new Category($this);
         return $media;
     }
 }

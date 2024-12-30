@@ -5,10 +5,10 @@ namespace Mlabfactory\WordPress\Entities;
 
 class Category extends Response {
 
-    private int $count;
-    private string $name;
-    private string $slug;
-    private int $parent;
+    protected int $count;
+    protected string $name;
+    protected string $slug;
+    protected int $parent;
 
     public function __construct(array $data)
     {
@@ -17,6 +17,8 @@ class Category extends Response {
         $this->name = $data['name'];
         $this->slug = $data['slug'];
         $this->parent = $data['parent'];
+
+        $this->body = $data;
     }
 
     public function getCount(): int
