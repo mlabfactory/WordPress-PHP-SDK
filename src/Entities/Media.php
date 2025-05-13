@@ -19,6 +19,7 @@ class Media extends Response {
     private string $ping_status;
     private string $template;
     private MediaDetail $mediaDetail;
+    private string $path;
 
     public function __construct(array $data) {
         $this->id = $data['id'];
@@ -35,6 +36,7 @@ class Media extends Response {
         $this->template = $data['template'];
         $this->meta = new Meta($data['meta'], $data['categories'] ?? null);
         $this->mediaDetail = new MediaDetail((array) $data['media_details']);
+        $this->path = $data['guid']->rendered;
 
         $this->body = $data;
     }
@@ -84,5 +86,15 @@ class Media extends Response {
     public function getMediaDetail(): MediaDetail
     {
         return $this->mediaDetail;
+    }
+
+    /**
+     * Get the value of path
+     *
+     * @return string
+     */
+    public function getPath(): string
+    {
+        return $this->path;
     }
 }
